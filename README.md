@@ -1,39 +1,28 @@
+🇧🇷 Português | 🇺🇸 [English](#english)
+
 # stm32-debounce
 
-Rotina de debounce de botão com soft timer em STM32F4xx — registradores diretos (sem HAL).
+Debounce de botão com soft timer (TIM10) no STM32F4xx — sem HAL.
 
-## Descrição
-
-Implementação de debounce por software usando polling de timer de hardware (TIM10). O botão PC13 controla o pisca-pisca do LED PA5, com leitura dupla do estado do botão para eliminar ruído mecânico.
-
-## Hardware
-
-- Microcontrolador: STM32F4xx (Nucleo-F401RE / F411RE)
-- LED: PA5
-- Botão: PC13 (ativo em LOW)
-
-## Configuração do Timer
-
-| Parâmetro | Valor |
-|-----------|-------|
-| Timer | TIM10 |
-| PSC | 1599 → 10 kHz |
-| ARR | 49 → estouro a cada 5 ms |
-| Tempo de pisca | 25 × 5 ms = 125 ms |
-
-## Técnica de debounce
-
-Amostragem dupla do botão a cada ciclo de 5 ms:
-```c
-botao[1] = botao[0];
-botao[0] = (ButtonPort->IDR & Button) == BUTTONPRESSED;
-if (botao[0] == botao[1]) { /* estado estável */ }
-```
+**LED:** PA5 · **Botão:** PC13 · **Estouro:** 5 ms
 
 ## IDE
 
-Atollic TrueSTUDIO 9.3
+Atollic TrueSTUDIO 9.3 / STM32CubeIDE
+Centro Tecnológico Liberato — Novo Hamburgo/RS
 
-## Autores
+---
 
-Prof. Marcos Zuccolotto & Turma 4324 — Centro Tecnológico Liberato
+<a name="english"></a>
+🇧🇷 [Português](#) | 🇺🇸 English
+
+# stm32-debounce
+
+Button debounce with soft timer (TIM10) on STM32F4xx — no HAL.
+
+**LED:** PA5 · **Button:** PC13 · **Overflow:** 5 ms
+
+## IDE
+
+Atollic TrueSTUDIO 9.3 / STM32CubeIDE
+Centro Tecnológico Liberato — Novo Hamburgo/RS, Brazil
